@@ -3,6 +3,8 @@ import workiva_sdk
 from workiva_sdk.rest import ApiException
 
 # Configure the API client
+# Audits are in the Prototype Platform (https://developers.workiva.com/prototype-platform/prototype-getaudits/)
+# They use the prototype base address instead of the production base address
 configuration = workiva_sdk.Configuration(
     host="https://api.app.wdesk.com/prototype/platform"
 )
@@ -14,8 +16,8 @@ with workiva_sdk.ApiClient(configuration) as api_client:
 
     try:
         # Retrieve audits (optionally add filters or sorting)
-        response = audits_api.get_audits() # This is a full object that may include metadata like pagination (@nextLink) or status info
-        audits = response.data # This is typically a list of audit objects, each with attributes like id, name, status, etc. You can treat this as a regular Python list and iterate over it.
+        response = audits_api.get_audits() # This is a full object that may include metadata
+        audits = response.data # This is typically a list of audit objects, each with attributes like id, name, status, etc.
 
         # Print audit names and IDs
         for audit in audits:
